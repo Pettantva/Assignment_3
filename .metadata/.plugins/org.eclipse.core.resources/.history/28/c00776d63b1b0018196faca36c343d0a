@@ -1,0 +1,15 @@
+package model;
+
+public class grid {
+	private int head;
+	private int[][] grid;
+	
+	public grid(int rows, int cols, int head){
+		this.head = head;
+		setGrid();
+	}
+	
+	private setGrid(){
+		
+	}
+}
