@@ -16,7 +16,7 @@ public class P1AILocalizer implements EstimatorInterface {
 		this.cols = cols;
 		this.head = head;
 		this.robot  = new grid(rows, cols, head);
-		this.sensor = new sensor();
+		this.sensor = new Sensor();
 		this.prob = new DENAIEstimator();
 		
 	}	

@@ -8,16 +8,12 @@ public class P1AILocalizer implements EstimatorInterface {
 	private int cols;
 	private int head;
 	private grid robot;
-	private sensor sensor;
-	private DENAIEstimator prob;
 
 	public P1AILocalizer( int rows, int cols, int head) {
 		this.rows = rows;
 		this.cols = cols;
 		this.head = head;
 		this.robot  = new grid(rows, cols, head);
-		this.sensor = new sensor();
-		this.prob = new DENAIEstimator();
 		
 	}	
 	
@@ -63,9 +59,6 @@ public class P1AILocalizer implements EstimatorInterface {
 	}
 	
 	public void update() {
-		robot.update();
-		sensor.update();
-		prob.update();
 		System.out.println("Nothing is happening, no model to go for...");
 	}
 	

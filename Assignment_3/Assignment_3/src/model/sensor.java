@@ -1,8 +1,8 @@
 package model;
 
-public class DENAIEstimator {
+public class sensor {
 
-	public DENAIEstimator(){
+	public sensor(){
 		
 	}
 	

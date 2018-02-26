@@ -13,8 +13,4 @@ public class grid {
 	private void setGrid(){
 
 	}
-	
-	public void update(){
-		
-	}
 }
