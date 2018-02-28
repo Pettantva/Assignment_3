@@ -5,22 +5,21 @@ import java.util.Random;
 public class RobotGrid {
 	private int rows;
 	private int cols;
-	private int heads;
+	private int head;
 	private int rowp;
 	private int colp;
-	private int head;
 	private boolean[][][] loc;
 	private Random rand;
 	private double[][] TM;
 	
-	public RobotGrid(int rows, int cols, int heads){
-		this.heads = heads;
+	public RobotGrid(int rows, int cols, int head){
+		this.head = head;
 		this.rows = rows;
 		this.cols = cols;
-		this.loc = new boolean[rows][cols][heads];
+		this.loc = new boolean[rows][cols][4];
 		this.rand = new Random();
 		setGrid();
-		int size = rows*cols*heads;
+		int size = rows*cols*4;
 		this.TM = new double[size][size];
 		setTransitionMatrix();
 	}
