@@ -135,13 +135,7 @@ public class RobotGrid {
 	}
 	
 	public double getTransProb(int x, int y, int h, int nX, int nY, int nH){
-		int realX;
-		int realY;
-		int size = TM.length;
-		
-		realY = (size/rows)*x + y*4 + h;
-		realX = (size/cols)*nX + nY*4 + nH;
-		return TM[realX][realY];
+		return 0;
 	}
 	
 	private void resetGrid(){
@@ -156,27 +150,7 @@ public class RobotGrid {
 	}
 	
 	private void setTransitionMatrix(){
-		int x;
-		int y;
-		int h;
-		int nX;
-		int nY;
-		int nH;
-		double value;
-		for(int i = 0; i < rows ; i ++){
-			for(int j = 0; j < cols; j++){
-				h = i%4;
-				x = i/(4*cols);
-				y = (i-h-((cols/2)*x))/4;
-				
-				nH = j%4;
-				nX = j/(4*rows);
-				nY = (j-nH-((rows/2)*x))/4;
-				
-				value = getTransProb(x,y,h,nX,nY,nH);
-				TM[i][j] = value;
-			}
-		}
+		
 	}
 	/*  Ändrar beroende på heading
 	
