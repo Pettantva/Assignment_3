@@ -26,6 +26,7 @@ public class RobotGrid {
 	}
 	
 	private void setGrid(){
+		resetGrid();
 		this.rowp = this.rand.nextInt(rows);
 		this.colp = this.rand.nextInt(cols);
 		this.head = this.rand.nextInt(4);

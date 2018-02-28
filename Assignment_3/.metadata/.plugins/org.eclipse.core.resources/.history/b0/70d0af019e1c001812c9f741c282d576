@@ -26,6 +26,7 @@ public class RobotGrid {
 	}
 	
 	private void setGrid(){
+		resetGrid();
 		this.rowp = this.rand.nextInt(rows);
 		this.colp = this.rand.nextInt(cols);
 		this.head = this.rand.nextInt(4);
@@ -33,6 +34,7 @@ public class RobotGrid {
 	}
 	
 	public void update(){
+		Random rand = new Random();
 		if(rowp == 0){  //upp
 			if(colp == 0){ //vänster
 				if(head == 0 || head == 3){ //byta
@@ -106,23 +108,6 @@ public class RobotGrid {
 				headUpdateAll();
 			}
 		}
-		int verhor = this.head % 2;
-		if(verhor == 0){
-			if(this.head == 0){
-				this.rowp--;
-			}
-			else{
-				this.rowp++;
-			}
-		}
-		else{
-			if(this.head == 3){
-				this.colp--;
-			}
-			else{
-				this.colp++;
-			}
-		}
 	}
 	
 	private void headUpdateTwo(int a, int b, boolean wallHead){
@@ -132,20 +117,18 @@ public class RobotGrid {
 			while(cont){
 				random = rand.nextInt(heads);
 				if(random != a && random != b){
-					setHead(random);
+					this.head = random;
 					cont = false;
 				}
 			}
 		}
 		else{
 			double prob = rand.nextDouble();
-			if(prob < 0.3){
-				while(cont){
-					random = rand.nextInt(heads);
-					if(random != a && random != b){
-						setHead(random);
-						cont = false;
-					}
+			while(cont){
+				random = rand.nextInt(heads);
+				if(random != a && random != b){
+					this.head = random;
+					cont = false;
 				}
 			}
 		}
@@ -158,32 +141,15 @@ public class RobotGrid {
 			while(cont){
 				random = rand.nextInt(heads);
 				if(random != a){
-					setHead(random);
+					this.head = random;
 					cont = false;
-				}
-			}
-		}
-		else{
-			double prob = rand.nextDouble();
-			if(prob < 0.3){
-				while(cont){
-					random = rand.nextInt(heads);
-					if(random != a){
-						setHead(random);
-						cont = false;
-					}
 				}
 			}
 		}
 	}
 
 	private void headUpdateAll(){
-		int random;
-		double prob = rand.nextDouble();
-		if(prob < 0.3){
-				random = rand.nextInt(heads);
-				setHead(random);
-		}
+		
 	}
 	
 	public int getRow(){
@@ -202,10 +168,15 @@ public class RobotGrid {
 		return 0;
 	}
 	
-	private void setHead(int h){
-		loc[this.rowp][this.colp][this.head] = false;
-		loc[this.rowp][this.colp][h] = true;
-		this.head = h;
+	private void resetGrid(){
+		for(int i = 0; i < rows; i++){
+			for(int j = 0; j < cols; j++){
+				for(int h = 0; h < 4; h++){
+					loc[i][j][h] = false;
+				}
+			}
+		}
+		//loc[this.rowp][this.colp][this.head] = false; snabbare men osäkrare
 	}
 	
 	private void setTransitionMatrix(){

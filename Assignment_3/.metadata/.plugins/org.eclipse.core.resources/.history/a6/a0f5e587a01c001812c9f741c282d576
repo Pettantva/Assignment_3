@@ -26,6 +26,7 @@ public class RobotGrid {
 	}
 	
 	private void setGrid(){
+		resetGrid();
 		this.rowp = this.rand.nextInt(rows);
 		this.colp = this.rand.nextInt(cols);
 		this.head = this.rand.nextInt(4);
@@ -132,7 +133,7 @@ public class RobotGrid {
 			while(cont){
 				random = rand.nextInt(heads);
 				if(random != a && random != b){
-					setHead(random);
+					this.head = random;
 					cont = false;
 				}
 			}
@@ -143,7 +144,7 @@ public class RobotGrid {
 				while(cont){
 					random = rand.nextInt(heads);
 					if(random != a && random != b){
-						setHead(random);
+						this.head = random;
 						cont = false;
 					}
 				}
@@ -158,7 +159,7 @@ public class RobotGrid {
 			while(cont){
 				random = rand.nextInt(heads);
 				if(random != a){
-					setHead(random);
+					this.head = random;
 					cont = false;
 				}
 			}
@@ -169,7 +170,7 @@ public class RobotGrid {
 				while(cont){
 					random = rand.nextInt(heads);
 					if(random != a){
-						setHead(random);
+						this.head = random;
 						cont = false;
 					}
 				}
@@ -182,7 +183,7 @@ public class RobotGrid {
 		double prob = rand.nextDouble();
 		if(prob < 0.3){
 				random = rand.nextInt(heads);
-				setHead(random);
+				this.head = random;
 		}
 	}
 	
@@ -202,10 +203,15 @@ public class RobotGrid {
 		return 0;
 	}
 	
-	private void setHead(int h){
-		loc[this.rowp][this.colp][this.head] = false;
-		loc[this.rowp][this.colp][h] = true;
-		this.head = h;
+	private void resetGrid(){
+		for(int i = 0; i < rows; i++){
+			for(int j = 0; j < cols; j++){
+				for(int h = 0; h < 4; h++){
+					loc[i][j][h] = false;
+				}
+			}
+		}
+		//loc[this.rowp][this.colp][this.head] = false; snabbare men osäkrare
 	}
 	
 	private void setTransitionMatrix(){
