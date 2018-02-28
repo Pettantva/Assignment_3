@@ -1,0 +1,34 @@
+package model;
+
+public class grid {
+	private int head;
+	private int rowp;
+	private int colp;
+	private int[][][] grid;
+	
+	public grid(int rows, int cols, int head){
+		this.head = head;
+		this.grid = new int[rows][cols][4];
+		setGrid();
+	}
+	
+	private void setGrid(){
+
+	}
+	
+	public void update(){
+		
+	}
+	
+	public int getRow(){
+		return this.rowp;
+	}
+	
+	public int getCol(){
+		return this.colp;
+	}
+	
+	public double getTransProb(int rX, int rY, int x, int y, int h){
+		return 0;
+	}
+}

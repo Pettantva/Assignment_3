@@ -7,65 +7,69 @@ public class P1AILocalizer implements EstimatorInterface {
 	private int rows;
 	private int cols;
 	private int head;
-	private grid robot;
-	private sensor sensor;
+	private RobotGrid robot;
+	private Sensor sensor;
 	private DENAIEstimator prob;
 
 	public P1AILocalizer( int rows, int cols, int head) {
 		this.rows = rows;
 		this.cols = cols;
 		this.head = head;
-		this.robot  = new grid(rows, cols, head);
-		this.sensor = new sensor();
-		this.prob = new DENAIEstimator();
+		this.robot  = new RobotGrid(rows, cols, head);
+		this.sensor = new Sensor(this.robot, rows, cols);
+		this.prob = new DENAIEstimator(this.sensor);
 		
 	}	
 	
 	public int getNumRows() {
-		return rows;
+		return this.rows;
 	}
 	
 	public int getNumCols() {
-		return cols;
+		return this.cols;
 	}
 	
 	public int getNumHead() {
-		return head;
+		return this.head;
 	}
 	
 	public double getTProb( int x, int y, int h, int nX, int nY, int nH) {
-		return 0.0;
+		return this.robot.getTransProb(x, y, h, nX, nY, nH);
 	}
 
 	public double getOrXY( int rX, int rY, int x, int y, int h) {
-		return 0.1;
+		if(rX == -1 || rY == -1){
+			return this.prob.getNothingProb(x, y, h);
+		}
+		else{
+			return this.prob.getStateProb(rX, rY, x, y, h);
+		}
 	}
 
-
 	public int[] getCurrentTruePosition() {
-		
-		int[] ret = new int[2];
-		ret[0] = rows/2;
-		ret[1] = cols/2;
-		return ret;
+		int[] pos = new int[2];
+		pos[0] = this.robot.getRow();
+		pos[1] = this.robot.getCol();
+		return pos;
 
 	}
 
 	public int[] getCurrentReading() {
-		int[] ret = null;
-		return ret;
+		int[] read = new int[2];
+		read[0] = this.sensor.getRow();
+		read[1] = this.sensor.getCol();
+		return read;
 	}
 
-
 	public double getCurrentProb( int x, int y) {
-		double ret = 0.0;
-		return ret;
+		return this.prob.getSummedProb(x,y);
 	}
 	
 	public void update() {
-		robot.update();
-		sensor.update();
-		prob.update();
+		this.robot.update();  //makes random move according to rules
+		this.sensor.update(this.robot); //reads the new state
+		this.prob.update(this.sensor); //uppdates the probabilities depending on the sensor read
+						//this is the smart one. with the matrixes, i think
 		System.out.println("Nothing is happening, no model to go for...");
 	}
 	

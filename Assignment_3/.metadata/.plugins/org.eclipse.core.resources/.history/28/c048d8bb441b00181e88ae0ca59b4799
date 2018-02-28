@@ -1,0 +1,22 @@
+package model;
+
+public class sensor {
+	private int rowr;
+	private int colr;
+
+	public sensor(){
+		
+	}
+	
+	public void update(){
+		
+	}
+	
+	public int getRow(){
+		return this.rowr;
+	}
+	
+	public int getCol(){
+		return this.col;
+	}
+}

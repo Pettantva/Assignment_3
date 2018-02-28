@@ -1,0 +1,78 @@
+package model;
+
+import control.EstimatorInterface;
+
+public class P1AILocalizer implements EstimatorInterface {
+	
+	private int rows;
+	private int cols;
+	private int head;
+	private grid robot;
+	private sensor sensor;
+	private DENAIEstimator prob;
+
+	public P1AILocalizer( int rows, int cols, int head) {
+		this.rows = rows;
+		this.cols = cols;
+		this.head = head;
+		this.robot  = new grid(rows, cols, head);
+		this.sensor = new sensor();
+		this.prob = new DENAIEstimator();
+		
+	}	
+	
+	public int getNumRows() {
+		return rows;
+	}
+	
+	public int getNumCols() {
+		return cols;
+	}
+	
+	public int getNumHead() {
+		return head;
+	}
+	
+	public double getTProb( int x, int y, int h, int nX, int nY, int nH) {
+		return 0.0;
+	}
+
+	public double getOrXY( int rX, int rY, int x, int y, int h) {
+		if(rX == -1 || rY == -1){
+			return prob.getNothingProb(x, y, h);
+		}
+		else{
+			return prob.getStateProb(rX, rY, x, y, h);
+		}
+	}
+
+	public int[] getCurrentTruePosition() {
+		int[] pos = new int[2];
+		pos[0] = robot.getRow();
+		pos[1] = robot.getCol();
+		return pos;
+
+	}
+
+	public int[] getCurrentReading() {
+		int[] read = new int[2];
+		read[0] = sensor.getRow();
+		read[1] = sensor.getCol();
+		return read;
+	}
+
+
+	public double getCurrentProb( int x, int y) {
+		return prob.getSummedProb(x,y);
+	}
+	
+	public void update() {
+		robot.update();  //makes random move according to rules
+		sensor.update(); //reads the new state
+		prob.update(); //uppdates the probabilities depending on the sensor read
+						//this is the smart one. with the matrixes, i think
+		System.out.println("Nothing is happening, no model to go for...");
+	}
+	
+	
+}
