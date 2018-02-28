@@ -6,16 +6,16 @@ public class P1AILocalizer implements EstimatorInterface {
 	
 	private int rows;
 	private int cols;
-	private int heads;
+	private int head;
 	private RobotGrid robot;
 	private Sensor sensor;
 	private DENAIEstimator prob;
 
-	public P1AILocalizer( int rows, int cols, int headss) {
+	public P1AILocalizer( int rows, int cols, int head) {
 		this.rows = rows;
 		this.cols = cols;
-		this.heads = heads;
-		this.robot  = new RobotGrid(rows, cols, heads);
+		this.head = head;
+		this.robot  = new RobotGrid(rows, cols, head);
 		this.sensor = new Sensor(this.robot, rows, cols);
 		this.prob = new DENAIEstimator(this.sensor);
 		
@@ -30,7 +30,7 @@ public class P1AILocalizer implements EstimatorInterface {
 	}
 	
 	public int getNumHead() {
-		return this.heads;
+		return this.head;
 	}
 	
 	public double getTProb( int x, int y, int h, int nX, int nY, int nH) {
