@@ -10,7 +10,6 @@ public class RobotGrid {
 	private int colp;
 	private boolean[][][] loc;
 	private Random rand;
-	private double[][] TM;
 	
 	public RobotGrid(int rows, int cols, int head){
 		this.head = head;
@@ -19,8 +18,6 @@ public class RobotGrid {
 		this.loc = new boolean[rows][cols][4];
 		this.rand = new Random();
 		setGrid();
-		int size = rows*cols*4;
-		this.TM = new double[size][size];
 		setTransitionMatrix();
 	}
 	

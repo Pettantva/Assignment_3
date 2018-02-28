@@ -10,7 +10,6 @@ public class RobotGrid {
 	private int colp;
 	private boolean[][][] loc;
 	private Random rand;
-	private double[][] TM;
 	
 	public RobotGrid(int rows, int cols, int head){
 		this.head = head;
@@ -19,8 +18,6 @@ public class RobotGrid {
 		this.loc = new boolean[rows][cols][4];
 		this.rand = new Random();
 		setGrid();
-		int size = rows*cols*4;
-		this.TM = new double[size][size];
 		setTransitionMatrix();
 	}
 	
@@ -129,10 +126,6 @@ public class RobotGrid {
 		return this.colp;
 	}
 	
-	private double countTransProb(int x, int y, int h, int nX, int nY, int nH){
-		return 0;
-	}
-	
 	public double getTransProb(int x, int y, int h, int nX, int nY, int nH){
 		return 0;
 	}
@@ -152,40 +145,79 @@ public class RobotGrid {
 		
 	}
 	/*  Ändrar beroende på heading
-	
-	
-	 public void update(){
+	public void update(){
+		Random rand = new Random();
 		if(rowp == 0){  //upp
 			if(colp == 0){ //vänster
-				headUpdateTwo(0, 3);
+				if(head == 0 || head == 3){ //byta
+					
+				}
+				else{ //inte byta
+					
+				}
 			}
 			else if(colp == cols-1){ //höger
-				headUpdateTwo(0, 1);
+				if(head == 0 || head == 1){ //byta
+					
+				}
+				else{ //inte byta
+					
+				}
 			}
 			else{ //mitten
-				headUpdateThree(0);
+				if(head == 0){ //byta
+					
+				}
+				else{ //inte byta
+					
+				}
 			}
 		}
 		else if(rowp == rows-1){ //ner
 			if(colp == 0){ //vänster
-				headUpdateTwo(2, 3);
+				if(head == 2 || head == 3){ //byta
+					
+				}
+				else{ //inte byta
+					
+				}
 			}
 			else if(colp == cols-1){ //höger
-				headUpdateTwo(2, 1);
+				if(head == 1 || head == 2){ //byta
+					
+				}
+				else{ //inte byta
+					
+				}
 			}
 			else{ //mitten
-				headUpdateThree(2);
+				if(head == 2){ //byta
+					
+				}
+				else{ //inte byta
+					
+				}
 			}
 		}
 		else{ //mitten
 			if(colp == 0){ //vänster
-				headUpdateThree(3);
+				if(head == 3){ //byta
+					
+				}
+				else{ //inte byta
+					
+				}
 			}
 			else if(colp == cols-1){ //höger
-				headUpdateThree(1);
+				if(head == 1){ //byta
+					
+				}
+				else{ //inte byta
+					
+				}
 			}
-			else{ //mitten
-				headUpdate();
+			else{ //mitten byta
+				
 			}
 		}
 	}*/
