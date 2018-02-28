@@ -11,7 +11,7 @@ public class P1AILocalizer implements EstimatorInterface {
 	private Sensor sensor;
 	private DENAIEstimator prob;
 
-	public P1AILocalizer( int rows, int cols, int heads) {
+	public P1AILocalizer( int rows, int cols, int headss) {
 		this.rows = rows;
 		this.cols = cols;
 		this.heads = heads;
