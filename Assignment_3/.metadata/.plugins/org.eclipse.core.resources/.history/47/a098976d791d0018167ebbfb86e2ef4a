@@ -28,9 +28,9 @@ public class DENAIEstimator {
 	}	
 	
 	public double getStateProb(int rI, int rJ, int i, int j, int h){
-		double[][] obsMatrix = getObsmatrix(rI,rJ);
+		double[][] obsMatrix = getObsmatrix(i,j);
 		int size = obsMatrix.length*obsMatrix[0].length;
-		int value = (size/obsMatrix.length)*i + j*4 + h;
+		int value = (size/obsMatrix.length)*x + y*4 + h;
 	}
 	public double[][] matrixMult(double[][]a , double[][] b){
 		int aRows = a.length;
