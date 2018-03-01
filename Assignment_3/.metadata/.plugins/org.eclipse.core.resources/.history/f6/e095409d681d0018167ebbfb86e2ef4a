@@ -28,7 +28,7 @@ public class DENAIEstimator {
 		int size = nothingMatrix.length*nothingMatrix[0].length;
 		int value = (size/nothingMatrix.length)*x + y*4 + h;
 		return nothingMatrix[value][value];
-	}	
+	{	
 	
 	public double getStateProb(int rX, int rY, int x, int y, int h){
 		double[][] obsMatrix = getObsmatrix(rX,rY);
