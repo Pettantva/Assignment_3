@@ -2,16 +2,11 @@ package model;
 
 public class DENAIEstimator {
 	private Sensor sensor;
-	private double[][] f;
 	public DENAIEstimator(Sensor sensor){
 		this.sensor = sensor;
-		f = new double[sensor.getTM().length][1];
-		initF();
 	}
 	
 	public void update(Sensor sensor){
-		double[][] ttrans = matrixTrans(sensor.getTM());
-		double[][] OTTrans = 
 		
 	}
 	
@@ -67,11 +62,5 @@ public class DENAIEstimator {
 		}
 		return b;
 		
-	}
-	private void initF(){
-		double initprob = 1/sensor.getTM().length;
-		for(int i = 0; i < f.length ; i++){
-			f[i][0] = initprob;
-		}
 	}
 }
