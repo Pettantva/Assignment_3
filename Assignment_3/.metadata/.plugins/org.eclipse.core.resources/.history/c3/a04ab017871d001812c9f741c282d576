@@ -125,7 +125,7 @@ public class Sensor {
 		else if((rD == 0 && cD == 1) || (rD == 1 && cD == 0) || (rD == 1 && cD == 1)){
 			return 1;
 		}
-		else if((rD == 0 && cD == 2) || (rD == 2 && cD == 0) || (rD == 2 && cD == 1) || (rD == 1 && cD == 2) || (rD == 2 && cD == 2)){
+		else if(){
 			return 2;
 		}
 		else{
