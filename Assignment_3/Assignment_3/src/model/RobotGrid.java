@@ -203,8 +203,8 @@ public class RobotGrid {
 		int realY;
 		int size = TM.length;
 		
-		realY = (size/rows)*x + y*4 + h;
-		realX = (size/cols)*nX + nY*4 + nH;
+		realX = (size/rows)*x + y*4 + h;
+		realY = (size/cols)*nX + nY*4 + nH;
 		return TM[realX][realY];
 	}
 	
