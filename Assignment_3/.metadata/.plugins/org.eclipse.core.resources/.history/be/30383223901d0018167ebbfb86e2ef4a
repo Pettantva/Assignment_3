@@ -2,7 +2,9 @@ package model;
 
 public class DENAIEstimator {
 	private Sensor sensor;
-	public DENAIEstimator(Sensor sensor){
+	private RobotGrid robot;
+	public DENAIEstimator(Sensor sensor, RobotGrid robot){
+		this.robot = robot;
 		this.sensor = sensor;
 	}
 	
@@ -11,10 +13,12 @@ public class DENAIEstimator {
 	}
 	
 	public double getSummedProb(int i, int j){
-		int width = sensor.getTM().length;								//Grid = robotgrid
+		int width = robot;								//Grid = robotgrid
+		int gridY = grid.height;
+		int size = grid.totalStates;
 																//f-vektorn behövs pronto pronto
 		
-		double value = f[(width)*i + j];
+		double value = f[(size/gridX)*i + j];
 		return value;
 	}
 	
