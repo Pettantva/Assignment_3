@@ -11,24 +11,24 @@ public class DENAIEstimator {
 	}
 	
 	public double getSummedProb(int i, int j){
-		int gridX = grid.witdh;								//Grid = robotgrid
+		int gridX = grid.witdh;
 		int gridY = grid.height;
 		int size = grid.totalStates;
-																//f-vektorn behövs pronto pronto
+		//f-vektorn behövs pronto pronto
 		
 		double value = f[(size/gridX)*i + j];
 		return value;
 	}
 	
 	public double getNothingProb(int i, int j, int h){
-		double[][] nothingMatrix = new double[][];					//hämta nothingMatrix
+		double[][] nothingMatrix = new double[][];
 		int size = nothingMatrix.length*nothingMatrix[0].length;
 		int value = (size/nothingMatrix.length)*i + j*4 + h;
 		return nothingMatrix[value][value];
 	}	
 	
 	public double getStateProb(int rI, int rJ, int i, int j, int h){
-		double[][] obsMatrix = getObsmatrix(rI,rJ);					//hämtarättObsmatrix
+		double[][] obsMatrix = getObsmatrix(rI,rJ);
 		int size = obsMatrix.length*obsMatrix[0].length;
 		int value = (size/obsMatrix.length)*i + j*4 + h;
 	}
