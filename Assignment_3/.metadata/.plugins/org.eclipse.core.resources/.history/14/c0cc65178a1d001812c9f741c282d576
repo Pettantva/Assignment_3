@@ -11,14 +11,12 @@ public class Sensor {
 	private int colr;
 	private RobotGrid robot;
 	private Random rand;
-	private double[][] nM;
 
 	public Sensor(RobotGrid robot, int rows, int cols){
 		this.robot = robot;
 		this.rows = rows;
 		this.cols = cols;
 		this.rand = new Random();
-		this.nM = nothingProb();
 		scan();
 	}
 	
@@ -90,38 +88,33 @@ public class Sensor {
 		}
 	}
 	public double[][] observationMatrix(int r, int c){
-		if(r == -1 || c == -1){
-			return this.nM;
-		}
-		else{
-			List<Double> oV = new ArrayList<Double>();
-			int size = rows*cols*4;
-			double[][] oM = new double[size][size];
-			double noll = 0;
-			for(int i = 0; i < rows; i++){
-				for(int j = 0; j < cols; j++){
-					for(int h = 0; h < 4; h++){
-						int d = distance(i,j,r,c);
-						if(d == 0){
-							oV.add(0.1);
-						}
-						else if(d == 1){
-							oV.add(0.05);
-						}
-						else if(d == 2){
-							oV.add(0.025);
-						}
-						else{
-							oV.add(noll);
-						}
+		List<Double> oV = new ArrayList<Double>();
+		int size = rows*cols*4;
+		double noll = 0;
+		double[][] oM= new double[size][size];
+		for(int i = 0; i < rows; i++){
+			for(int j = 0; j < cols; j++){
+				for(int h = 0; h < 4; h++){
+					int d = distance(i,j,r,c);
+					if(d == 0){
+						oV.add(0.1);
+					}
+					else if(d == 1){
+						oV.add(0.05);
+					}
+					else if(d == 2){
+						oV.add(0.025);
+					}
+					else{
+						oV.add(noll);
 					}
 				}
 			}
-			for(int i = 0; i < oV.size(); i++){
-				oM[i][i] = oV.get(i);
-			}
-			return oM;
 		}
+		for(int i = 0; i < oV.size(); i++){
+			oM[i][i] = oV.get(i);
+		}
+		return oM;
 	}
 	private int distance(int i,int j, int r, int c){
 		int rD = Math.abs(i-r);
@@ -138,52 +131,5 @@ public class Sensor {
 		else{
 			return -1;
 		}
-	}
-	
-	private double nP(int nN, int nF){
-		return (1-0.1-nN*0.05-nF*0.025);
-	}
-	
-	private double[][] nothingProb(){
-		List<Double> oV = new ArrayList<Double>();
-		int size = rows*cols*4;
-		double[][] oM = new double[size][size];
-		for(int i = 0; i < rows; i++){
-			for(int j = 0; j < cols; j++){
-				for(int h = 0; h < 4; h++){
-					oV.add(nP(cN(i,j), fN(i,j)));
-				}
-			}
-		}
-		for(int q = 0; q < oV.size(); q++){
-			oM[q][q] = oV.get(q);
-		}
-		return oM;
-	}
-	
-	private int cN(int r, int c){
-		int nN = 0;
-		for(int i = r-1; i <= r+1; i++){
-			for(int j = c-1; j <= c+1; j++){
-				if((i >= 0) && (i < rows) && (j >= 0) && (j < cols)){
-					
-				}
-			}
-		}
-		return nN;
-	}
-	
-	private int fN(int r, int c){
-		int nN = 0;
-		for(int i = r-1; i <= r+1; i++){
-			for(int j = c-1; j <= c+1; j++){
-				
-			}
-		}
-		return nN;
-	}
-	
-	public double[][] getTM(){
-		return robot.getTM();
 	}
 }

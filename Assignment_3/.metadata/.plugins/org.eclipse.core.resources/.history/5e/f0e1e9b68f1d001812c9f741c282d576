@@ -464,8 +464,4 @@ public class RobotGrid {
 			return noP;
 		}
 	}
-	
-	public double[][] getTM(){
-		return this.TM;
-	}
 }
