@@ -23,11 +23,16 @@ public class DENAIEstimator {
 		return value;
 	}
 	
+<<<<<<< HEAD
 	public double getNothingProb(int x, int y, int h){
 		double[][] nothingMatrix = new double[][];
 		int size = nothingMatrix.length*nothingMatrix[0].length;
 		int value = (size/nothingMatrix.length)*x + y*4 + h;
 		return nothingMatrix[value][value];
+=======
+	public double getNothingProb(int i, int j, int h){
+		
+>>>>>>> cf71f1128dfafea557c0b2c74678f2c15b7f0568
 	}
 	
 	public double getStateProb(int rX, int rY, int x, int y, int h){

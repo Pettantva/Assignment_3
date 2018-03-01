@@ -194,8 +194,80 @@ public class RobotGrid {
 		return this.colp;
 	}
 	
-	private double countTransProb(int x, int y, int h, int nX, int nY, int nH){
-		return 0;
+	private double countTransProb(int i, int j, int h, int nI, int nJ, int nH){
+		if(i == 0){  //upp
+			if(j == 0){ //vänster
+				if(h == 0 || h == 3){ //byta
+					return probTwo(0, 3, true, i, j, h, nI, nJ, nH);
+				}
+				else{ //inte byta
+					return probTwo(0, 3, false, i, j, h, nI, nJ, nH);
+				}
+			}
+			else if(j == cols-1){ //höger
+				if(h == 0 || h == 1){ //byta
+					return probTwo(0, 1, true, i, j, h, nI, nJ, nH);
+				}
+				else{ //inte byta
+					return probTwo(0, 1, false, i, j, h, nI, nJ, nH);
+				}
+			}
+			else{ //mitten
+				if(h == 0){ //byta
+					return probThree(0, true, i, j, h, nI, nJ, nH);
+				}
+				else{ //inte byta
+					return probThree(0, false, i, j, h, nI, nJ, nH);
+				}
+			}
+		}
+		else if(i == rows-1){ //ner
+			if(j == 0){ //vänster
+				if(h == 2 || h == 3){ //byta
+					return probTwo(2, 3, true, i, j, h, nI, nJ, nH);
+				}
+				else{ //inte byta
+					return probTwo(2, 3, false, i, j, h, nI, nJ, nH);
+				}
+			}
+			else if(j == cols-1){ //höger
+				if(h == 2 || h == 1){ //byta
+					return probTwo(2, 1, true, i, j, h, nI, nJ, nH);
+				}
+				else{ //inte byta
+					return probTwo(2, 1, false, i, j, h, nI, nJ, nH);
+				}
+			}
+			else{ //mitten
+				if(h == 2){ //byta
+					return probThree(2, true, i, j, h, nI, nJ, nH);
+				}
+				else{ //inte byta
+					return probThree(2, false, i, j, h, nI, nJ, nH);
+				}
+			}
+		}
+		else{ //mitten
+			if(j == 0){ //vänster
+				if(h == 3){ //byta
+					return probThree(3, true, i, j, h, nI, nJ, nH);
+				}
+				else{ //inte byta
+					return probThree(3, false, i, j, h, nI, nJ, nH);
+				}
+			}
+			else if(j == cols-1){ //höger
+				if(h == 1){ //byta
+					return probThree(1, true, i, j, h, nI, nJ, nH);
+				}
+				else{ //inte byta
+					return probThree(1, false, i, j, h, nI, nJ, nH);
+				}
+			}
+			else{ //mitten byta
+				return probAll(i, j, h, nI, nJ, nH);
+			}
+		}
 	}
 	
 	public double getTransProb(int x, int y, int h, int nX, int nY, int nH){
@@ -232,47 +304,164 @@ public class RobotGrid {
 				nX = j/(4*rows);
 				nY = (j-nH-((rows/2)*x))/4;
 				
-				value = getTransProb(x,y,h,nX,nY,nH);
+				value = countTransProb(x,y,h,nX,nY,nH);
 				TM[i][j] = value;
 			}
 		}
 	}
-	/*  Ändrar beroende på heading
 	
+	private double probTwo(int a, int b, boolean wallHead, int i, int j, int h, int nI, int nJ, int nH){
+		double sameP = 0.7;
+		double allChangeP = 1/2;
+		double changeP = 0.3;
+		double noP = 0;
+		boolean up = (nI == i-1 && nJ == j);
+		boolean down = (nI == i+1 && nJ == j);
+		boolean left = (nI == i && nJ == j-1);
+		boolean right = (nI == i && nJ == j+1);
+		if(wallHead){
+			if(up || down || left || right){
+				if(up && nH == 0){
+					return allChangeP;
+				}
+				else if(right && nH == 1){
+					return allChangeP;
+				}
+				else if(down && nH == 2){
+					return allChangeP;
+				}
+				else if(left && nH == 3){
+					return allChangeP;
+				}
+				else{
+					return noP;
+				}
+			}
+			else{
+				return noP;
+			}
+		}
+		else{
+			if(up || down || left || right){
+				if(h == nH){
+					return sameP;
+				}
+				else{
+					if(up && nH == 0){
+						return changeP;
+					}
+					else if(right && nH == 1){
+						return changeP;
+					}
+					else if(down && nH == 2){
+						return changeP;
+					}
+					else if(left && nH == 3){
+						return changeP;
+					}
+					else{
+						return noP;
+					}
+				}
+			}
+			else{
+				return noP;
+			}
+		}
+	}
 	
-	 public void update(){
-		if(rowp == 0){  //upp
-			if(colp == 0){ //vänster
-				headUpdateTwo(0, 3);
+	private double probThree(int a, boolean wallHead, int i, int j, int h, int nI, int nJ, int nH){
+		double sameP = 0.7;
+		double allChangeP = 1/3;
+		double changeP = 0.15;
+		double noP = 0;
+		boolean up = (nI == i-1 && nJ == j);
+		boolean down = (nI == i+1 && nJ == j);
+		boolean left = (nI == i && nJ == j-1);
+		boolean right = (nI == i && nJ == j+1);
+		if(wallHead){
+			if(up || down || left || right){
+				if(up && nH == 0){
+					return allChangeP;
+				}
+				else if(right && nH == 1){
+					return allChangeP;
+				}
+				else if(down && nH == 2){
+					return allChangeP;
+				}
+				else if(left && nH == 3){
+					return allChangeP;
+				}
+				else{
+					return noP;
+				}
 			}
-			else if(colp == cols-1){ //höger
-				headUpdateTwo(0, 1);
-			}
-			else{ //mitten
-				headUpdateThree(0);
-			}
-		}
-		else if(rowp == rows-1){ //ner
-			if(colp == 0){ //vänster
-				headUpdateTwo(2, 3);
-			}
-			else if(colp == cols-1){ //höger
-				headUpdateTwo(2, 1);
-			}
-			else{ //mitten
-				headUpdateThree(2);
-			}
-		}
-		else{ //mitten
-			if(colp == 0){ //vänster
-				headUpdateThree(3);
-			}
-			else if(colp == cols-1){ //höger
-				headUpdateThree(1);
-			}
-			else{ //mitten
-				headUpdate();
+			else{
+				return noP;
 			}
 		}
-	}*/
+		else{
+			if(up || down || left || right){
+				if(h == nH){
+					return sameP;
+				}
+				else{
+					if(up && nH == 0){
+						return changeP;
+					}
+					else if(right && nH == 1){
+						return changeP;
+					}
+					else if(down && nH == 2){
+						return changeP;
+					}
+					else if(left && nH == 3){
+						return changeP;
+					}
+					else{
+						return noP;
+					}
+				}
+			}
+			else{
+				return noP;
+			}
+		}
+	}
+	
+	private double probAll(int i, int j, int h, int nI, int nJ, int nH){
+		double sameP = 0.7;
+		double changeP = 0.1;
+		double noP = 0;
+		boolean up = (nI == i-1 && nJ == j);
+		boolean down = (nI == i+1 && nJ == j);
+		boolean left = (nI == i && nJ == j-1);
+		boolean right = (nI == i && nJ == j+1);
+		if(up || down || left || right){
+			if(h == nH){
+				return sameP;
+			}
+			else{
+				if(up && nH == 0){
+					return changeP;
+				}
+				else if(right && nH == 1){
+					return changeP;
+				}
+				else if(down && nH == 2){
+					return changeP;
+				}
+				else if(left && nH == 3){
+					return changeP;
+				}
+				else{
+					return noP;
+				}
+			}
+		}
+		else{
+			return noP;
+		}
+	}
 }
