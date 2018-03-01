@@ -168,7 +168,7 @@ public class Sensor {
 		for(int i = r-1; i <= r+1; i++){
 			for(int j = c-1; j <= c+1; j++){
 				if((i >= 0) && (i < rows) && (j >= 0) && (j < cols)){
-					nN++;
+					
 				}
 			}
 		}
@@ -179,7 +179,7 @@ public class Sensor {
 		int nN = 0;
 		for(int i = r-2; i <= r+2; i++){
 			for(int j = c-2; j <= c+2; j++){
-				nN++;
+				
 			}
 		}
 		return nN;
