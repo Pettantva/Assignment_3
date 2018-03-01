@@ -11,7 +11,8 @@ public class DENAIEstimator {
 	}
 	
 	public double getSummedProb(int i, int j){
-		int width = robot;								//Grid = robotgrid
+		int gridX = grid.witdh;								//Grid = robotgrid
+		int gridY = grid.height;
 		int size = grid.totalStates;
 																//f-vektorn behövs pronto pronto
 		
