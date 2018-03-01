@@ -162,28 +162,14 @@ public class Sensor {
 	}
 	
 	private int cN(int r, int c){
-		int nN = 0;
-		for(int i = r-1; i <= r+1; i++){
-			for(int j = c-1; j <= c+1; j++){
-				if((i >= 0) && (i < rows) && (j >= 0) && (j < cols)){
-					
-				}
-			}
-		}
-		return nN;
-	}
-	
-	private int fN(int r, int c){
-		int nN = 0;
 		for(int i = r-1; i <= r+1; i++){
 			for(int j = c-1; j <= c+1; j++){
 				
 			}
 		}
-		return nN;
 	}
 	
-	public double[][] getTM(){
-		return robot.getTM();
+	private int fN(int r, int c){
+		
 	}
 }

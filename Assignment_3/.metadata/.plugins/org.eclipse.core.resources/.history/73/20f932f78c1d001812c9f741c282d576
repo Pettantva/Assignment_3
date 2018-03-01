@@ -90,13 +90,22 @@ public class Sensor {
 		}
 	}
 	public double[][] observationMatrix(int r, int c){
+		List<Double> oV = new ArrayList<Double>();
+		int size = rows*cols*4;
+		double[][] oM = new double[size][size];
 		if(r == -1 || c == -1){
-			return this.nM;
+			for(int i = 0; i < rows; i++){
+				for(int j = 0; j < cols; j++){
+					for(int h = 0; h < 4; h++){
+						if((i == 0 || i == rows-1) && (j == 0 || j == cols-1)){
+							oV.add(3,5);
+						}
+						else if 
+					}
+				}
+			}
 		}
 		else{
-			List<Double> oV = new ArrayList<Double>();
-			int size = rows*cols*4;
-			double[][] oM = new double[size][size];
 			double noll = 0;
 			for(int i = 0; i < rows; i++){
 				for(int j = 0; j < cols; j++){
@@ -117,11 +126,11 @@ public class Sensor {
 					}
 				}
 			}
-			for(int i = 0; i < oV.size(); i++){
-				oM[i][i] = oV.get(i);
-			}
-			return oM;
 		}
+		for(int i = 0; i < oV.size(); i++){
+			oM[i][i] = oV.get(i);
+		}
+		return oM;
 	}
 	private int distance(int i,int j, int r, int c){
 		int rD = Math.abs(i-r);
@@ -151,7 +160,12 @@ public class Sensor {
 		for(int i = 0; i < rows; i++){
 			for(int j = 0; j < cols; j++){
 				for(int h = 0; h < 4; h++){
-					oV.add(nP(cN(i,j), fN(i,j)));
+					if((i == 0 || i == rows-1) && (j == 0 || j == cols-1)){
+						oV.add(nP(3,5));
+					}
+					else if(true){
+						
+					}
 				}
 			}
 		}
@@ -159,31 +173,5 @@ public class Sensor {
 			oM[q][q] = oV.get(q);
 		}
 		return oM;
-	}
-	
-	private int cN(int r, int c){
-		int nN = 0;
-		for(int i = r-1; i <= r+1; i++){
-			for(int j = c-1; j <= c+1; j++){
-				if((i >= 0) && (i < rows) && (j >= 0) && (j < cols)){
-					
-				}
-			}
-		}
-		return nN;
-	}
-	
-	private int fN(int r, int c){
-		int nN = 0;
-		for(int i = r-1; i <= r+1; i++){
-			for(int j = c-1; j <= c+1; j++){
-				
-			}
-		}
-		return nN;
-	}
-	
-	public double[][] getTM(){
-		return robot.getTM();
 	}
 }
