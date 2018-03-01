@@ -1,0 +1,374 @@
+package model;
+
+import java.util.Random;
+
+public class RobotGrid {
+	private int rows;
+	private int cols;
+	private int heads;
+	private int rowp;
+	private int colp;
+	private int head;
+	private boolean[][][] loc;
+	private Random rand;
+	private double[][] TM;
+	
+	public RobotGrid(int rows, int cols, int heads){
+		this.heads = heads;
+		this.rows = rows;
+		this.cols = cols;
+		this.loc = new boolean[rows][cols][heads];
+		this.rand = new Random();
+		setGrid();
+		int size = rows*cols*heads;
+		this.TM = new double[size][size];
+		setTransitionMatrix();
+	}
+	
+	private void setGrid(){
+		this.rowp = this.rand.nextInt(rows);
+		this.colp = this.rand.nextInt(cols);
+		this.head = this.rand.nextInt(4);
+		loc[this.rowp][this.colp][this.head] = true;
+	}
+	
+	public void update(){
+		if(rowp == 0){  //upp
+			if(colp == 0){ //vänster
+				if(head == 0 || head == 3){ //byta
+					headUpdateTwo(0, 3, true);
+				}
+				else{ //inte byta
+					headUpdateTwo(0, 3, false);
+				}
+			}
+			else if(colp == cols-1){ //höger
+				if(head == 0 || head == 1){ //byta
+					headUpdateTwo(0, 1, true);
+				}
+				else{ //inte byta
+					headUpdateTwo(0, 1, false);
+				}
+			}
+			else{ //mitten
+				if(head == 0){ //byta
+					headUpdateThree(0, true);
+				}
+				else{ //inte byta
+					headUpdateThree(0, false);
+				}
+			}
+		}
+		else if(rowp == rows-1){ //ner
+			if(colp == 0){ //vänster
+				if(head == 2 || head == 3){ //byta
+					headUpdateTwo(2, 3, true);
+				}
+				else{ //inte byta
+					headUpdateTwo(2, 3, false);
+				}
+			}
+			else if(colp == cols-1){ //höger
+				if(head == 2 || head == 1){ //byta
+					headUpdateTwo(2, 1, true);
+				}
+				else{ //inte byta
+					headUpdateTwo(2, 1, false);
+				}
+			}
+			else{ //mitten
+				if(head == 2){ //byta
+					headUpdateThree(2, true);
+				}
+				else{ //inte byta
+					headUpdateThree(2, false);
+				}
+			}
+		}
+		else{ //mitten
+			if(colp == 0){ //vänster
+				if(head == 3){ //byta
+					headUpdateThree(3, true);
+				}
+				else{ //inte byta
+					headUpdateThree(3, false);
+				}
+			}
+			else if(colp == cols-1){ //höger
+				if(head == 1){ //byta
+					headUpdateThree(1, true);
+				}
+				else{ //inte byta
+					headUpdateThree(1, false);
+				}
+			}
+			else{ //mitten byta
+				headUpdateAll();
+			}
+		}
+		int verhor = this.head % 2;
+		if(verhor == 0){
+			if(this.head == 0){
+				this.rowp--;
+			}
+			else{
+				this.rowp++;
+			}
+		}
+		else{
+			if(this.head == 3){
+				this.colp--;
+			}
+			else{
+				this.colp++;
+			}
+		}
+	}
+	
+	private void headUpdateTwo(int a, int b, boolean wallHead){
+		boolean cont = true;
+		int random;
+		if(wallHead){
+			while(cont){
+				random = rand.nextInt(heads);
+				if(random != a && random != b){
+					setHead(random);
+					cont = false;
+				}
+			}
+		}
+		else{
+			double prob = rand.nextDouble();
+			if(prob < 0.3){
+				while(cont){
+					random = rand.nextInt(heads);
+					if(random != a && random != b){
+						setHead(random);
+						cont = false;
+					}
+				}
+			}
+		}
+	}
+	
+	private void headUpdateThree(int a, boolean wallHead){
+		boolean cont = true;
+		int random;
+		if(wallHead){
+			while(cont){
+				random = rand.nextInt(heads);
+				if(random != a){
+					setHead(random);
+					cont = false;
+				}
+			}
+		}
+		else{
+			double prob = rand.nextDouble();
+			if(prob < 0.3){
+				while(cont){
+					random = rand.nextInt(heads);
+					if(random != a){
+						setHead(random);
+						cont = false;
+					}
+				}
+			}
+		}
+	}
+
+	private void headUpdateAll(){
+		int random;
+		double prob = rand.nextDouble();
+		if(prob < 0.3){
+				random = rand.nextInt(heads);
+				setHead(random);
+		}
+	}
+	
+	public int getRow(){
+		return this.rowp;
+	}
+	
+	public int getCol(){
+		return this.colp;
+	}
+	
+	private double countTransProb(int i, int j, int h, int nI, int nJ, int nH){
+		if(i == 0){  //upp
+			if(j == 0){ //vänster
+				if(h == 0 || h == 3){ //byta
+					probTwo(0, 3, true, i, j, h, nI, nJ, nH);
+				}
+				else{ //inte byta
+					probTwo(0, 3, false, i, j, h, nI, nJ, nH);
+				}
+			}
+			else if(j == cols-1){ //höger
+				if(h == 0 || h == 1){ //byta
+					probTwo(0, 1, true, i, j, h, nI, nJ, nH);
+				}
+				else{ //inte byta
+					probTwo(0, 1, false, i, j, h, nI, nJ, nH);
+				}
+			}
+			else{ //mitten
+				if(h == 0){ //byta
+					probThree(0, true, i, j, h, nI, nJ, nH);
+				}
+				else{ //inte byta
+					probThree(0, false, i, j, h, nI, nJ, nH);
+				}
+			}
+		}
+		else if(i == rows-1){ //ner
+			if(j == 0){ //vänster
+				if(h == 2 || h == 3){ //byta
+					probTwo(2, 3, true, i, j, h, nI, nJ, nH);
+				}
+				else{ //inte byta
+					probTwo(2, 3, false, i, j, h, nI, nJ, nH);
+				}
+			}
+			else if(j == cols-1){ //höger
+				if(h == 2 || h == 1){ //byta
+					probTwo(2, 1, true, i, j, h, nI, nJ, nH);
+				}
+				else{ //inte byta
+					probTwo(2, 1, false, i, j, h, nI, nJ, nH);
+				}
+			}
+			else{ //mitten
+				if(h == 2){ //byta
+					probThree(2, true), i, j, h, nI, nJ, nH;
+				}
+				else{ //inte byta
+					probThree(2, false, i, j, h, nI, nJ, nH);
+				}
+			}
+		}
+		else{ //mitten
+			if(j == 0){ //vänster
+				if(h == 3){ //byta
+					probThree(3, true, i, j, h, nI, nJ, nH);
+				}
+				else{ //inte byta
+					probThree(3, false, i, j, h, nI, nJ, nH);
+				}
+			}
+			else if(j == cols-1){ //höger
+				if(h == 1){ //byta
+					probThree(1, true, i, j, h, nI, nJ, nH);
+				}
+				else{ //inte byta
+					probThree(1, false, i, j, h, nI, nJ, nH);
+				}
+			}
+			else{ //mitten byta
+				probAll(i, j, h, nI, nJ, nH);
+			}
+		}
+		return 0;
+	}
+	
+	public double getTransProb(int x, int y, int h, int nX, int nY, int nH){
+		int realX;
+		int realY;
+		int size = TM.length;
+		
+		realY = (size/rows)*x + y*4 + h;
+		realX = (size/cols)*nX + nY*4 + nH;
+		return TM[realX][realY];
+	}
+	
+	private void setHead(int h){
+		loc[this.rowp][this.colp][this.head] = false;
+		loc[this.rowp][this.colp][h] = true;
+		this.head = h;
+	}
+	
+	private void setTransitionMatrix(){
+		int x;
+		int y;
+		int h;
+		int nX;
+		int nY;
+		int nH;
+		double value;
+		for(int i = 0; i < rows ; i ++){
+			for(int j = 0; j < cols; j++){
+				h = i%4;
+				x = i/(4*cols);
+				y = (i-h-((cols/2)*x))/4;
+				
+				nH = j%4;
+				nX = j/(4*rows);
+				nY = (j-nH-((rows/2)*x))/4;
+				
+				value = countTransProb(x,y,h,nX,nY,nH);
+				TM[i][j] = value;
+			}
+		}
+	}
+	
+	private void probTwo(int a, int b, boolean wallHead, int i, int j, int h, int nI, int nJ, int nH){
+		boolean cont = true;
+		int random;
+		if(wallHead){
+			while(cont){
+				random = rand.nextInt(heads);
+				if(random != a && random != b){
+					setHead(random);
+					cont = false;
+				}
+			}
+		}
+		else{
+			double prob = rand.nextDouble();
+			if(prob < 0.3){
+				while(cont){
+					random = rand.nextInt(heads);
+					if(random != a && random != b){
+						setHead(random);
+						cont = false;
+					}
+				}
+			}
+		}
+	}
+	
+	private void probThree(int a, boolean wallHead, int i, int j, int h, int nI, int nJ, int nH){
+		boolean cont = true;
+		int random;
+		if(wallHead){
+			while(cont){
+				random = rand.nextInt(heads);
+				if(random != a){
+					setHead(random);
+					cont = false;
+				}
+			}
+		}
+		else{
+			double prob = rand.nextDouble();
+			if(prob < 0.3){
+				while(cont){
+					random = rand.nextInt(heads);
+					if(random != a){
+						setHead(random);
+						cont = false;
+					}
+				}
+			}
+		}
+	}
+	
+	private void probAll(int i, int j, int h, int nI, int nJ, int nH){
+		int random;
+		double prob = rand.nextDouble();
+		if(prob < 0.3){
+				random = rand.nextInt(heads);
+				setHead(random);
+		}
+	}
+}

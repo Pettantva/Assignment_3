@@ -15,7 +15,7 @@ public class DENAIEstimator {
 	}
 	
 	public double getNothingProb(int i, int j, int h){
-		return 0;
+		
 	}
 	
 	public double getStateProb(int rX, int rY, int x, int y, int h){
