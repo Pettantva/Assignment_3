@@ -18,6 +18,11 @@ public class Main {
 		 * graphics class.
 		 */
 		//EstimatorInterface l = new P1AILocalizer( 4, 4, 4);
+		for(int i = 0; i < 1; i++){
+			
+		}
+		int value = (16*16/16)*2 + 1*4 + 1;
+		System.out.println(value);
 		EstimatorInterface l = new P1AILocalizer( 4, 4, 4);
 
 		RobotLocalizationViewer viewer = new RobotLocalizationViewer( l);

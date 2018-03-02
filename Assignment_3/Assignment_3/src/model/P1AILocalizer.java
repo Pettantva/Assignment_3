@@ -69,7 +69,6 @@ public class P1AILocalizer implements EstimatorInterface {
 		this.sensor.update(this.robot); //reads the new state
 		this.prob.update(this.sensor); //uppdates the probabilities depending on the sensor read
 						//this is the smart one. with the matrixes, i think
-		System.out.println("Nothing is happening, no model to go for...");
 	}
 	
 	
