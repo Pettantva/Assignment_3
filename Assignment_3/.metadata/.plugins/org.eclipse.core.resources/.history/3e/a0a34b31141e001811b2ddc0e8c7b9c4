@@ -26,16 +26,15 @@ public class Main {
 		 * this thread controls the continuous update. If it is not started, 
 		 * you can only click through your localisation stepwise
 		 */
-		new LocalizationDriver( 500, viewer).start();
-		/*RobotGrid robot = new RobotGrid(8,8,4);
-		Sensor sensor = new Sensor(robot, 8, 8);
+		//new LocalizationDriver( 500, viewer).start();
+		RobotGrid robot = new RobotGrid(4,4,4);
 		robot.update();
-		sensor.update(robot);
-		double [][] lol = sensor.observationMatrix(3,3);
-		for(int i = 0; i < lol.length; i = i +4){
-			//System.out.println(lol[i][i]);
+		System.out.println(robot.getTM().length);
+		System.out.println(robot.getTM()[0].length);
+		for(int i = 0; i < robot.getTM().length; i++){
+			for(int j = 0; j < robot.getTM()[0].length; j++){
+				System.out.println(robot.getTM()[i][j]);
+			}
 		}
-		System.out.println(lol.length);*/
-		
 	}
 }	

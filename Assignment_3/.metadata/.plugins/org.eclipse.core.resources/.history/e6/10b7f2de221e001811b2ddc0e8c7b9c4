@@ -19,6 +19,10 @@ public class Sensor {
 		this.cols = cols;
 		this.rand = new Random();
 		this.nM = nothingProb();
+		for(int i = 0; i < nM.length; i = i +4){
+			System.out.println(nM[i][i]);
+		}
+		System.out.println("");
 		scan();
 	}
 	
@@ -159,9 +163,9 @@ public class Sensor {
 		for(int i = 0; i < rows; i++){
 			for(int j = 0; j < cols; j++){
 				for(int h = 0; h < 4; h++){
-					int cn = cN(i,j) - 1;  //close neibours
-					int fn = fN(i,j) - cn - 1; //far neibours
-					oV.add(nP(cn, fn));
+					int cn = cN(i,j);  //close neibours
+					int fn = fN(i,j); //far neibours
+					oV.add(nP(cn-1, fn-cn-1));
 				}
 			}
 		}
