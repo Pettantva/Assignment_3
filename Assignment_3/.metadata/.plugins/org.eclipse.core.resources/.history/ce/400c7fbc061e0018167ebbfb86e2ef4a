@@ -18,7 +18,7 @@ public class Main {
 		 * graphics class.
 		 */
 		//EstimatorInterface l = new P1AILocalizer( 4, 4, 4);
-		EstimatorInterface l = new P1AILocalizer( 4, 4, 4);
+		EstimatorInterface l = new P1AILocalizer( 2, 2, 4);
 
 		RobotLocalizationViewer viewer = new RobotLocalizationViewer( l);
 
@@ -27,7 +27,7 @@ public class Main {
 		 * you can only click through your localisation stepwise
 		 */
 		//new LocalizationDriver( 500, viewer).start();
-		RobotGrid robot = new RobotGrid(4,4,4);
+		RobotGrid robot = new RobotGrid(2,2,4);
 		robot.update();
 		System.out.println(robot.getTM().length);
 		System.out.println(robot.getTM()[0].length);
