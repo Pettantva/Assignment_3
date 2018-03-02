@@ -85,7 +85,7 @@ public class DENAIEstimator {
 		
 	}
 	private void initF(){
-		double initprob = 1.0/(sensor.getTM().length/4);
+		double initprob = 1.0/(sensor.getTM().length);
 		for(int i = 0; i < f.length ; i++){
 			f[i][0] = initprob;
 		}
