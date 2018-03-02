@@ -7,9 +7,9 @@ public class P1AILocalizer implements EstimatorInterface {
 	private int rows;
 	private int cols;
 	private int heads;
-	private RobotGrid robot;
-	private Sensor sensor;
-	private DENAIEstimator prob;
+	//private RobotGrid robot;
+	//private Sensor sensor;
+	//private DENAIEstimator prob;
 
 	public P1AILocalizer(int rows, int cols, int heads) {
 		this.rows = rows;
