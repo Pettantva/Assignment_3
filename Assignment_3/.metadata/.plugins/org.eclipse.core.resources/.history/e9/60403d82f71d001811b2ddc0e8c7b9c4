@@ -34,7 +34,7 @@ public class P1AILocalizer implements EstimatorInterface {
 	}
 	
 	public double getTProb( int x, int y, int h, int nX, int nY, int nH) {
-		return this.robot.getTransProb(x, y, h, nX, nY, nH);
+		return this.robot.getTransProb(i, j, h, nI, nJ, nH);
 	}
 
 	public double getOrXY( int rX, int rY, int x, int y, int h) {
