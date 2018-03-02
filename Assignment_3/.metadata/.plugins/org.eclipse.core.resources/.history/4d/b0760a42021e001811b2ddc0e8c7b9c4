@@ -17,11 +17,7 @@ public class Main {
 		 * generate you own localiser / estimator wrapper here to plug it into the 
 		 * graphics class.
 		 */
-<<<<<<< HEAD
 		//EstimatorInterface l = new P1AILocalizer( 4, 4, 4);
-=======
-		EstimatorInterface l = new P1AILocalizer( 2, 2, 4);
->>>>>>> 494e76394700d4635d093c6116c06599e8b278e0
 
 		//RobotLocalizationViewer viewer = new RobotLocalizationViewer( l);
 
@@ -30,14 +26,9 @@ public class Main {
 		 * you can only click through your localisation stepwise
 		 */
 		//new LocalizationDriver( 500, viewer).start();
-		RobotGrid robot = new RobotGrid(2,2,4);
-		robot.update();
-		System.out.println(robot.getTM().length);
-		System.out.println(robot.getTM()[0].length);
-		for(int i = 0; i < robot.getTM().length; i++){
-			for(int j = 0; j < robot.getTM()[0].length; j++){
-				System.out.println(robot.getTM()[i][j]);
-			}
+		RobotGrid robot = new RobotGrid(4,4,4);
+		for(int i = 0; i < 30; i++){
+			robot.update();
 		}
 	}
 }	

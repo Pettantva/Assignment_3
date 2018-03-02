@@ -51,6 +51,7 @@ public class P1AILocalizer implements EstimatorInterface {
 		pos[0] = this.robot.getRow();
 		pos[1] = this.robot.getCol();
 		return pos;
+
 	}
 
 	public int[] getCurrentReading() {
