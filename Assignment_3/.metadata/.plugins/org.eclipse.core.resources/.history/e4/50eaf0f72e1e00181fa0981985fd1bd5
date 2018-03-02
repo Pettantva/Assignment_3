@@ -11,7 +11,7 @@ public class DENAIEstimator {
 		f = new double[sensor.getTM().length][1];
 		this.O = sensor.observationMatrix(sensor.getRow(), sensor.getCol());
 		initF();
-		//System.out.println(f.length + " här");
+		System.out.println(f.length + " här");
 	}
 	
 	public void update(Sensor sensor){
@@ -21,7 +21,6 @@ public class DENAIEstimator {
 		double[][] OTTrans = matrixMult(O, ttrans);
 		f = matrixMult(OTTrans, f);
 		double alpha = 0;
-		//double temp = 0;
 		for(int i = 0; i < f.length; i++){
 			for(int j = 0; j < f[0].length; j++){
 				alpha = alpha + f[i][j];
@@ -30,10 +29,8 @@ public class DENAIEstimator {
 		for(int i = 0; i < f.length; i++){
 			for(int j = 0; j < f[0].length; j++){
 				f[i][j] = (f[i][j])/alpha;
-				//temp = temp + f[i][j];
 			}
 		}
-		//System.out.println(temp);
 	}
 	
 	public double getSummedProb(int i, int j){
@@ -46,8 +43,10 @@ public class DENAIEstimator {
 	}
 	
 	public double getNothingProb(int i, int j, int h){
-		double[][] nothingMatrix = sensor.observationMatrix(-1, -1);					//hämta nothingMatrix
-		//int size = nothingMatrix.length*nothingMatrix[0].length;
+		int sensorReadI = sensor.getRow();
+		int sensorreadJ = sensor.getCol();
+		double[][] nothingMatrix = this.O;					//hämta nothingMatrix
+		int size = nothingMatrix.length*nothingMatrix[0].length;
 		//int value = (size/nothingMatrix.length)*i + j*4 + h;
 		int value = sensor.getRows()*i + j*4 + h;
 		return nothingMatrix[value][value];
@@ -94,7 +93,7 @@ public class DENAIEstimator {
 	}
 	private void initF(){
 		//double initprob = 1.0/(sensor.getTM().length/4);
-		double initprob = 1.0/(sensor.getCols()*sensor.getRows()*4);
+		double initprob = 1.0/(sensor.getCols()*sensor.getRows());
 		for(int i = 0; i < f.length ; i++){
 			f[i][0] = initprob;
 		}

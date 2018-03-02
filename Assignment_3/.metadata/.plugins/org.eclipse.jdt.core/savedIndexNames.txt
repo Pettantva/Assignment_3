@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 INDEX VERSION 1.127+/Users/Dalle/Documents/GitHub/Assignment_3/Assignment_3/.metadata/.plugins/org.eclipse.jdt.core
 3856011051.index
 2678521682.index
@@ -17,3 +18,24 @@ INDEX VERSION 1.127+/Users/Dalle/Documents/GitHub/Assignment_3/Assignment_3/.met
 3925981911.index
 3156421207.index
 2125161141.index
+=======
+INDEX VERSION 1.127+/Users/ludvigpettersson/Documents/GitHub/Assignment_3/Assignment_3/.metadata/.plugins/org.eclipse.jdt.core
+3156421207.index
+3494619248.index
+2678521682.index
+2125161141.index
+3935624324.index
+2123209889.index
+1462576478.index
+3310743309.index
+3077440633.index
+1710459378.index
+257892957.index
+4236265088.index
+1412367577.index
+1271342938.index
+2337468814.index
+3925981911.index
+1937382768.index
+3856011051.index
+>>>>>>> 69d6ee673858202f1f4269e31c4e64f1d1c44ff5

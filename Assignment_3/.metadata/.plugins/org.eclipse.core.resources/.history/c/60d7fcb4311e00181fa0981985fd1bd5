@@ -11,7 +11,7 @@ public class DENAIEstimator {
 		f = new double[sensor.getTM().length][1];
 		this.O = sensor.observationMatrix(sensor.getRow(), sensor.getCol());
 		initF();
-		//System.out.println(f.length + " här");
+		System.out.println(f.length + " här");
 	}
 	
 	public void update(Sensor sensor){
@@ -21,7 +21,7 @@ public class DENAIEstimator {
 		double[][] OTTrans = matrixMult(O, ttrans);
 		f = matrixMult(OTTrans, f);
 		double alpha = 0;
-		//double temp = 0;
+		int temp = 0;
 		for(int i = 0; i < f.length; i++){
 			for(int j = 0; j < f[0].length; j++){
 				alpha = alpha + f[i][j];
@@ -30,10 +30,10 @@ public class DENAIEstimator {
 		for(int i = 0; i < f.length; i++){
 			for(int j = 0; j < f[0].length; j++){
 				f[i][j] = (f[i][j])/alpha;
-				//temp = temp + f[i][j];
+				temp += f[i][j];
+				System.out.println(temp)
 			}
 		}
-		//System.out.println(temp);
 	}
 	
 	public double getSummedProb(int i, int j){
