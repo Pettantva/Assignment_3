@@ -19,15 +19,10 @@ public class DENAIEstimator {
 		double[][] ttrans = matrixTrans(sensor.getTM());
 		double[][] OTTrans = matrixMult(O, ttrans);
 		f = matrixMult(OTTrans, f);
-		double alpha = 0;
+		int alpha = 0;
 		for(int i = 0; i < f.length; i++){
 			for(int j = 0; j < f[0].length; j++){
-				alpha = alpha + f[i][j];
-			}
-		}
-		for(int i = 0; i < f.length; i++){
-			for(int j = 0; j < f[0].length; j++){
-				f[i][j] = (f[i][j])/alpha;
+				
 			}
 		}
 	}

@@ -1,35 +1,27 @@
 package model;
 
 public class DENAIEstimator {
-	
 	private Sensor sensor;
 	private double[][] f;
 	private double[][] O;
-	
 	public DENAIEstimator(Sensor sensor){
 		this.sensor = sensor;
 		f = new double[sensor.getTM().length][1];
 		this.O = sensor.observationMatrix(sensor.getRow(), sensor.getCol());
-		initF();
+		
 	}
 	
 	public void update(Sensor sensor){
 		this. sensor = sensor;
 		this.O = sensor.observationMatrix(sensor.getRow(), sensor.getCol());
 		double[][] ttrans = matrixTrans(sensor.getTM());
+<<<<<<< HEAD
 		double[][] OTTrans = matrixMult(O, ttrans);
 		f = matrixMult(OTTrans, f);
-		double alpha = 0;
-		for(int i = 0; i < f.length; i++){
-			for(int j = 0; j < f[0].length; j++){
-				alpha = alpha + f[i][j];
-			}
-		}
-		for(int i = 0; i < f.length; i++){
-			for(int j = 0; j < f[0].length; j++){
-				f[i][j] = (f[i][j])/alpha;
-			}
-		}
+=======
+		double[][] OTTrans = matrixMult(O,ttrans);
+		f = matrixMult(OTTrans,f);
+>>>>>>> 76dea23619446c408b36648967b795b0318c15dc
 	}
 	
 	public double getSummedProb(int i, int j){

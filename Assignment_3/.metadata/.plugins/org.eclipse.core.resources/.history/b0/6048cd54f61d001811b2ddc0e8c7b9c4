@@ -25,11 +25,6 @@ public class DENAIEstimator {
 				alpha = alpha + f[i][j];
 			}
 		}
-		for(int i = 0; i < f.length; i++){
-			for(int j = 0; j < f[0].length; j++){
-				f[i][j] = (f[i][j])/alpha;
-			}
-		}
 	}
 	
 	public double getSummedProb(int i, int j){
