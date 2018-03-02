@@ -295,11 +295,11 @@ public class RobotGrid {
 		int nH;
 		int size = TM.length;
 		double value;
-		for(int r = 0; r < size ; r ++){
+		for(int r = 0; r < rows ; r ++){
 			h = r%4;
 			i = r/(4*rows);
 			j = (r-h-((size/rows)*i))/4;
-			for(int c = 0; c < size; c++){
+			for(int c = 0; c < cols; c++){
 				nH = c%4;
 				nI = c/(4*cols);
 				nJ = (c-nH-((size/cols)*nI))/4;
