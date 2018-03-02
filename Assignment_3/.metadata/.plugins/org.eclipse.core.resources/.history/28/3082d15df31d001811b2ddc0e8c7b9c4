@@ -15,37 +15,28 @@ public class DENAIEstimator {
 		this. sensor = sensor;
 		this.O = sensor.observationMatrix(sensor.getRow(), sensor.getCol());
 		double[][] ttrans = matrixTrans(sensor.getTM());
-<<<<<<< HEAD
-		double[][] OTTrans = matrixMult(O, ttrans);
-		f = matrixMult(OTTrans, f);
-=======
-		double[][] OTTrans = matrixMult(O,ttrans);
-		f = matrixMult(OTTrans,f);
->>>>>>> 76dea23619446c408b36648967b795b0318c15dc
+		double[][] OTTrans = 
 	}
 	
 	public double getSummedProb(int i, int j){
 		int width = sensor.getTM().length;								//Grid = robotgrid
 																//f-vektorn behövs pronto pronto
 		
-		double value = f[(width)*i + j][0];
+		double value = f[(width)*i + j];
 		return value;
 	}
 	
 	public double getNothingProb(int i, int j, int h){
-		int sensorReadI = sensor.getRow();
-		int sensorreadJ = sensor.getCol();
-		double[][] nothingMatrix = sensor.observationMatrix(sensorReadI, sensorreadJ);					//hämta nothingMatrix
+		double[][] nothingMatrix = new double[][];					//hämta nothingMatrix
 		int size = nothingMatrix.length*nothingMatrix[0].length;
 		int value = (size/nothingMatrix.length)*i + j*4 + h;
 		return nothingMatrix[value][value];
 	}	
 	
 	public double getStateProb(int rI, int rJ, int i, int j, int h){
-		double[][] obsMatrix = sensor.observationMatrix(rI,rJ);					//hämtarättObsmatrix
+		double[][] obsMatrix = getObsmatrix(rI,rJ);					//hämtarättObsmatrix
 		int size = obsMatrix.length*obsMatrix[0].length;
-		double value = (size/obsMatrix.length)*i + j*4 + h;
-		return value;
+		int value = (size/obsMatrix.length)*i + j*4 + h;
 	}
 	public double[][] matrixMult(double[][]a , double[][] b){
 		int aRows = a.length;
