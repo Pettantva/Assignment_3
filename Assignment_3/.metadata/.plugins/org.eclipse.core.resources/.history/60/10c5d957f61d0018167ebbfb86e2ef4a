@@ -15,8 +15,13 @@ public class DENAIEstimator {
 		this. sensor = sensor;
 		this.O = sensor.observationMatrix(sensor.getRow(), sensor.getCol());
 		double[][] ttrans = matrixTrans(sensor.getTM());
+<<<<<<< HEAD
 		double[][] OTTrans = matrixMult(O, ttrans);
 		f = matrixMult(OTTrans, f);
+=======
+		double[][] OTTrans = matrixMult(O,ttrans);
+		f = matrixMult(OTTrans,f);
+>>>>>>> 76dea23619446c408b36648967b795b0318c15dc
 	}
 	
 	public double getSummedProb(int i, int j){
