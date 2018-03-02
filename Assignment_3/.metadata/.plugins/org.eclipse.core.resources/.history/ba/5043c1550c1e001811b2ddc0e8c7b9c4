@@ -6,7 +6,7 @@ public class DummyLocalizer implements EstimatorInterface {
 		
 	private int rows, cols, head;
 
-	public DummyLocalizer(int rows, int cols, int head) {
+	public DummyLocalizer( int rows, int cols, int head) {
 		this.rows = rows;
 		this.cols = cols;
 		this.head = head;
