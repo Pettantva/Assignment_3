@@ -1,7 +1,6 @@
 package control;
 
 import model.DummyLocalizer;
-import model.P1AILocalizer;
 import view.RobotLocalizationViewer;
 
 public class Main {
@@ -15,7 +14,7 @@ public class Main {
 		 * generate you own localiser / estimator wrapper here to plug it into the 
 		 * graphics class.
 		 */
-		EstimatorInterface l = new P1AILocalizer( 4, 4, 4);
+		EstimatorInterface l = new Localizer( 1, 1, 1);
 
 		RobotLocalizationViewer viewer = new RobotLocalizationViewer( l);
 
