@@ -3,27 +3,23 @@ package model;
 public class DENAIEstimator {
 	private Sensor sensor;
 	private double[][] f;
-	private double[][] O;
 	public DENAIEstimator(Sensor sensor){
 		this.sensor = sensor;
 		f = new double[sensor.getTM().length][1];
-		this.O = sensor.observationMatrix(sensor.getRow(), sensor.getCol());
-		
+		initF();
 	}
 	
 	public void update(Sensor sensor){
-		this. sensor = sensor;
-		this.O = sensor.observationMatrix(sensor.getRow(), sensor.getCol());
 		double[][] ttrans = matrixTrans(sensor.getTM());
-		double[][] OTTrans = matrixMult(O, ttrans);
-		f = matrixMult(OTTrans, f);
+		double[][] OTTrans = 
+		
 	}
 	
 	public double getSummedProb(int i, int j){
 		int width = sensor.getTM().length;								//Grid = robotgrid
 																//f-vektorn behövs pronto pronto
 		
-		double value = f[(width)*i + j][0];
+		double value = f[(width)*i + j];
 		return value;
 	}
 	

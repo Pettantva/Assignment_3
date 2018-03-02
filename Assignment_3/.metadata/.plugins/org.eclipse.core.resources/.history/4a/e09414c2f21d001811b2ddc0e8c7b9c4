@@ -35,14 +35,6 @@ public class Sensor {
 		return this.colr;
 	}
 	
-	public int getCols(){
-		return this.cols;
-	}
-	
-	public int getRows(){
-		return this.rows;
-	}
-	
 	private void scan(){
 		int r = this.robot.getRow();
 		int c = this.robot.getCol();
