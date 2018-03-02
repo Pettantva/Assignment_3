@@ -18,9 +18,9 @@ public class Main {
 		 * graphics class.
 		 */
 		//EstimatorInterface l = new P1AILocalizer( 4, 4, 4);
-		EstimatorInterface l = new P1AILocalizer( 4, 4, 4);
+		EstimatorInterface l = new P1AILocalizer( 2, 2, 4);
 
-		RobotLocalizationViewer viewer = new RobotLocalizationViewer( l);
+		//RobotLocalizationViewer viewer = new RobotLocalizationViewer( l);
 
 		/*
 		 * this thread controls the continuous update. If it is not started, 
