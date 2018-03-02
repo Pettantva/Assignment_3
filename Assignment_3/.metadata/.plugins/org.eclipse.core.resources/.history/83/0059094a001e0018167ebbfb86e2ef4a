@@ -14,7 +14,7 @@ public class DENAIEstimator {
 	}
 	
 	public void update(Sensor sensor){
-		this.sensor = sensor;
+		this. sensor = sensor;
 		this.O = sensor.observationMatrix(sensor.getRow(), sensor.getCol());
 		double[][] ttrans = matrixTrans(sensor.getTM());
 		double[][] OTTrans = matrixMult(O, ttrans);
@@ -33,12 +33,8 @@ public class DENAIEstimator {
 	}
 	
 	public double getSummedProb(int i, int j){
-<<<<<<< HEAD
-		return f[i][j];
-=======
 		double value = f[(f.length)*i + j][0];
 		return value;
->>>>>>> 494e76394700d4635d093c6116c06599e8b278e0
 	}
 	
 	public double getNothingProb(int i, int j, int h){
@@ -52,7 +48,8 @@ public class DENAIEstimator {
 	
 	public double getStateProb(int rI, int rJ, int i, int j, int h){
 		double[][] obsMatrix = O;					//hämtarättObsmatrix
-		int value = (obsMatrix.length/sensor.getRows())*i + j*4 + h;
+		int size = obsMatrix.length*obsMatrix[0].length;
+		int value = (size/obsMatrix.length)*i + j*4 + h;
 		return O[value][value];
 	}
 	public double[][] matrixMult(double[][]a , double[][] b){

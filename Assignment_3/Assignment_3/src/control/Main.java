@@ -17,7 +17,11 @@ public class Main {
 		 * generate you own localiser / estimator wrapper here to plug it into the 
 		 * graphics class.
 		 */
+<<<<<<< HEAD
 		//EstimatorInterface l = new P1AILocalizer( 4, 4, 4);
+=======
+		EstimatorInterface l = new P1AILocalizer( 2, 2, 4);
+>>>>>>> 494e76394700d4635d093c6116c06599e8b278e0
 
 		//RobotLocalizationViewer viewer = new RobotLocalizationViewer( l);
 
