@@ -20,22 +20,22 @@ public class Main {
 		//EstimatorInterface l = new P1AILocalizer( 4, 4, 4);
 		EstimatorInterface l = new P1AILocalizer( 4, 4, 4);
 
-		RobotLocalizationViewer viewer = new RobotLocalizationViewer( l);
+		//RobotLocalizationViewer viewer = new RobotLocalizationViewer( l);
 
 		/*
 		 * this thread controls the continuous update. If it is not started, 
 		 * you can only click through your localisation stepwise
 		 */
-		new LocalizationDriver( 500, viewer).start();
-		/*RobotGrid robot = new RobotGrid(8,8,4);
-		Sensor sensor = new Sensor(robot, 8, 8);
+		//new LocalizationDriver( 500, viewer).start();
+		RobotGrid robot = new RobotGrid(4,4,4);
+		Sensor sensor = new Sensor(robot, 4, 4);
 		robot.update();
 		sensor.update(robot);
-		double [][] lol = sensor.observationMatrix(3,3);
-		for(int i = 0; i < lol.length; i = i +4){
-			//System.out.println(lol[i][i]);
+		double [][] lol = sensor.observationMatrix(0,0);
+		for(int i = 0; i < lol.length; i++){
+			System.out.println(lol[i][i]);
 		}
-		System.out.println(lol.length);*/
+		System.out.println(lol.length);
 		
 	}
 }	
