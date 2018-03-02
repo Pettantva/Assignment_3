@@ -33,7 +33,10 @@ public class DENAIEstimator {
 	}
 	
 	public double getSummedProb(int i, int j){
-		double value = f[(f.length)*i + j][0];
+		int width = sensor.getTM().length;								//Grid = robotgrid
+																//f-vektorn behövs pronto pronto
+		
+		double value = f[(width)*i + j][0];
 		return value;
 	}
 	
