@@ -14,7 +14,7 @@ public class DENAIEstimator {
 	}
 	
 	public void update(Sensor sensor){
-		this.sensor = sensor;
+		this. sensor = sensor;
 		this.O = sensor.observationMatrix(sensor.getRow(), sensor.getCol());
 		double[][] ttrans = matrixTrans(sensor.getTM());
 		double[][] OTTrans = matrixMult(O, ttrans);

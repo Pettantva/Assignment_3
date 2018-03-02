@@ -14,7 +14,7 @@ public class DENAIEstimator {
 	}
 	
 	public void update(Sensor sensor){
-		this.sensor = sensor;
+		this. sensor = sensor;
 		this.O = sensor.observationMatrix(sensor.getRow(), sensor.getCol());
 		double[][] ttrans = matrixTrans(sensor.getTM());
 		double[][] OTTrans = matrixMult(O, ttrans);
@@ -33,7 +33,11 @@ public class DENAIEstimator {
 	}
 	
 	public double getSummedProb(int i, int j){
-		return f[i][j];
+		int width = sensor.getTM().length;								//Grid = robotgrid
+																//f-vektorn behövs pronto pronto
+		
+		double value = f[(width)*i + j][0];
+		return value;
 	}
 	
 	public double getNothingProb(int i, int j, int h){
