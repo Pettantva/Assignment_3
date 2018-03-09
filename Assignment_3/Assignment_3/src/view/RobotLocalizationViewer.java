@@ -38,8 +38,8 @@ public class RobotLocalizationViewer {
 		viewer.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE);
 		viewer.setResizable( false);
 		JPanel fieldPanel = new JPanel();
-		Dimension dState = new Dimension( 40, 40);
-		Dimension dPos = new Dimension( 120, 120);
+		Dimension dState = new Dimension( 30, 30);
+		Dimension dPos = new Dimension( 90, 90);
 		fieldPanel.setLayout(new GridLayout( rows, cols));
 		
 		positions = new JPanel[rows][cols];

@@ -43,6 +43,10 @@ public class Sensor {
 		return this.rows;
 	}
 	
+	public RobotGrid getRobot(){
+		return this.robot;
+	}
+	
 	private void scan(){
 		int r = this.robot.getRow();
 		int c = this.robot.getCol();
@@ -51,6 +55,7 @@ public class Sensor {
 		if(prob < 0.1){
 			this.rowr = r;
 			this.colr = c;
+			done = true;
 		}
 		else{
 			for(int i = r-1; i <= r+1; i++){
